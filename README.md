@@ -14,16 +14,18 @@ This Repo Majorly Contains the Files
 ### Jumping into the src files in detail.
 
 1. One.py
+
    This file has python code which majorly reads at least one of the YAML files in the RISC-V Unified Database project.
 
 2.Second.py 
 
-  In this file, Same Python program then emits the data in the YAML file as a C header file, format of your choosing. 
+
+   In this file, Same Python program then emits the data in the YAML file as a C header file, format of your choosing. 
 
 
 3. Third.c
 
-   One of the important files, so this file is nothing but a C implementation  that includes the C header file generated in step 2 or from Second.py
+    One of the important files, so this file is nothing but a C implementation  that includes the C header file generated in step 2 or from Second.py
 
 4.Fourth.c 
 
@@ -34,11 +36,11 @@ This Repo Majorly Contains the Files
 
 5th Step was nothing but to repeat the first four steps, inorder to do so the files have been named in a unique way. 
 
-a) '''Test1_with_newly_generated_yaml.py''': (same as One.py) but the yaml file used is taken from the input of step 4 (for testing on new .yaml file)
+a) '''Test1_with_newly_generated_yaml.py''':  (same as One.py) but the yaml file used is taken from the input of step 4 (for testing on new .yaml file)
 
-b) '''Test2_with_newly_generated_yaml.py''': (same as Second.py) but with a new_generated_instruction.h file. (from  the new .yaml file)
+b) '''Test2_with_newly_generated_yaml.py''':  (same as Second.py) but with a new_generated_instruction.h file. (from  the new .yaml file)
 
-c ''' Test3_with_newly_generated_yaml.c''': ( here again we obtain the header file) verifying for the correction and making sure it is the same as that. 
+c ''' Test3_with_newly_generated_yaml.c''':  ( here again we obtain the header file) verifying for the correction and making sure it is the same as that. 
 
 
 ### output 
