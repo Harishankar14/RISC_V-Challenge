@@ -6,18 +6,7 @@ This project demonstrates a complete round-trip pipeline between YAML instructio
 
 ### DIRECTORY STRUCTURE 
 
-RISC_V-Challenge/
-├── data/
-│   └── B/                          # Contains multiple .yaml instruction files (e.g., andn.yaml)
-├── src/                           # Source directory for Python and C implementations
-│   ├── One.py                     # Step 1: Reads a YAML file
-│   ├── Second.py                  # Step 2: Emits a C header file from YAML
-│   ├── Third.c                    # Step 3: C program that includes the header and prints data
-│   ├── Fourth.c                   # Step 4: Emits YAML from the C struct
-│   ├── Test1_with_newly_generated_yaml.py
-│   ├── Test2_with_newly_generated_yaml.py
-│   ├── Test3_with_newly_generated_yaml.c
-└── output/                        # Contains generated header, output YAML, and verification data
+<pre> ``` RISC_V-Challenge/ ├── data/ │ └── B/ # Contains multiple .yaml instruction files (e.g., andn.yaml) ├── src/ # Source directory for Python and C implementations │ ├── One.py # Step 1: Reads a YAML file │ ├── Second.py # Step 2: Emits a C header file from YAML │ ├── Third.c # Step 3: C program that includes the header and prints data │ ├── Fourth.c # Step 4: Emits YAML from the C struct │ ├── Test1_with_newly_generated_yaml.py │ ├── Test2_with_newly_generated_yaml.py │ ├── Test3_with_newly_generated_yaml.c ├── output/ # Contains generated header, output YAML, and verification data ``` </pre>
 
 🔁 Workflow Breakdown
  Step 1: Parse YAML (One.py)
