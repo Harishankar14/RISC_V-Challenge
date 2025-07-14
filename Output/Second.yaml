@@ -40,5 +40,5 @@ sail(): "{\n  let rs1_val = X(rs1);\n  let rs2_val = X(rs2);\n  result : xlenbit
   \ then result = result ^ (rs1_val << i);\n  X(rd) = result;\n  RETIRE_SUCCESS\n\
   }\n"
 
-Warning: Could not find /home/harishankar/Downloads/Coding_challenge/data/B/OP.yaml, defaulting opcode to 0x33
+
  C header file 'riscv_instruction.h' generated successfully!
