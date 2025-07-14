@@ -2,52 +2,74 @@
 
 ![Untitled Diagram(1)](https://github.com/user-attachments/assets/236be8c3-ee92-40db-941d-8a41222856aa)
 
-This Repo Majorly Contains the Files 
+This project demonstrates a complete round-trip pipeline between YAML instruction data (from the RISC-V Unified Database) and C code. It includes steps for parsing, transforming, generating C headers, and verifying output symmetry via YAML emission.
 
-1. Data
-   Under Data I have extracted the folder B which accompanies more than one .yaml files. Source taken: (https://github.com/riscv-software-src/riscv-unified-db)
+### DIRECTORY STRUCTURE 
 
-2. Second Most Important file directory is nothing but the '''src'''
-   This folder is divided into different Files both python and c files.
+RISC_V-Challenge/
+├── data/
+│   └── B/                          # Contains multiple .yaml instruction files (e.g., andn.yaml)
+├── src/                           # Source directory for Python and C implementations
+│   ├── One.py                     # Step 1: Reads a YAML file
+│   ├── Second.py                  # Step 2: Emits a C header file from YAML
+│   ├── Third.c                    # Step 3: C program that includes the header and prints data
+│   ├── Fourth.c                   # Step 4: Emits YAML from the C struct
+│   ├── Test1_with_newly_generated_yaml.py
+│   ├── Test2_with_newly_generated_yaml.py
+│   ├── Test3_with_newly_generated_yaml.c
+└── output/                        # Contains generated header, output YAML, and verification data
 
+🔁 Workflow Breakdown
+ Step 1: Parse YAML (One.py)
 
-### Jumping into the src files in detail.
+    Reads one .yaml instruction file from data/B/
 
-1. One.py
+    Parses it using PyYAML and prints the content
 
-   This file has python code which majorly reads at least one of the YAML files in the RISC-V Unified Database project.
+ Step 2: Generate C Header (Second.py)
 
-2.Second.py 
+    Takes the parsed YAML
 
+    Emits a C header file (instruction_<mnemonic>.h)
 
-   In this file, Same Python program then emits the data in the YAML file as a C header file, format of your choosing. 
+    Header defines a typedef struct for the instruction and a static instance
 
+Step 3: Use Header in C (Third.c)
 
-3. Third.c
+    Includes the generated .h file
 
-    One of the important files, so this file is nothing but a C implementation  that includes the C header file generated in step 2 or from Second.py
+    Prints the contents of the instruction to stdout
 
-4.Fourth.c 
+Step 4: Emit YAML from C (Fourth.c)
 
-  Another C Implementation, where  program should emit the contents of the C header file in YAML. The YAML file does NOT need to match the original YAML file.
+    C program that reconstructs the YAML structure from the Instruction struct
 
-
-### 5TH STEP IN DETAIL...
-
-5th Step was nothing but to repeat the first four steps, inorder to do so the files have been named in a unique way. 
-
-a) '''Test1_with_newly_generated_yaml.py''':  (same as One.py) but the yaml file used is taken from the input of step 4 (for testing on new .yaml file)
-
-b) '''Test2_with_newly_generated_yaml.py''':  (same as Second.py) but with a new_generated_instruction.h file. (from  the new .yaml file)
-
-c ''' Test3_with_newly_generated_yaml.c''':  ( here again we obtain the header file) verifying for the correction and making sure it is the same as that. 
-
-
-### output 
-
-Output file, basically consist of all the expected output of each files, majorly, inorder to verify the following.
-
+    Useful for checking correctness of the round-trip conversion
 
 
-Thank You :) 
+Step 5: Looping steps 1-4.
+a) Test1_with_newly_generated_yaml.py
+
+    Acts like One.py but uses the YAML emitted from Step 4 as input
+
+b) Test2_with_newly_generated_yaml.py
+
+    Like Second.py, generates a new C header from the new YAML
+
+c) Test3_with_newly_generated_yaml.c
+
+    C program that uses the regenerated header
+
+    Ensures output YAML matches the one from Step 4
+
+### OUTPUT
+All intermediate and final outputs, including:
+
+    Generated .h headers
+
+    C output logs
+
+    Final YAML files
+
+...are saved in the output/ folder for easy comparison and verification.
 
