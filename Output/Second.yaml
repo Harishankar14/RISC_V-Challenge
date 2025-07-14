@@ -1,0 +1,44 @@
+Loading the YAML.
+
+$schema: inst_schema.json#
+kind: instruction
+name: clmul
+long_name: Carry-less multiply (low-part)
+description: '`clmul` produces the lower half of the 2*XLEN carry-less product
+
+  '
+definedBy:
+  anyOf:
+  - Zbc
+  - Zbkc
+assembly: xd, xs1, xs2
+format:
+  $inherits:
+  - inst_subtype/R/R-x.yaml#/data
+  opcodes:
+    funct7:
+      display_name: CLMUL
+      value: 5
+    funct3:
+      display_name: CLMUL
+      value: 1
+    opcode:
+      $inherits: inst_opcode/OP.yaml#/data
+access:
+  s: always
+  u: always
+  vs: always
+  vu: always
+data_independent_timing: true
+operation(): "if (implemented?(ExtensionName::B) && (CSR[misa].B == 1'b0)) {\n  raise\
+  \ (ExceptionCode::IllegalInstruction, mode(), $encoding);\n}\n\nXReg xs1_val = X[xs1];\n\
+  XReg xs2_val = X[xs2];\nXReg output = 0;\n\nfor (U32 i=0; i < xlen(); i++) {\n \
+  \ output = (((xs2_val >> i) & 1) == 1)\n    ? output ^ (xs1_val << i)\n    : output;\n\
+  }\n\nX[xd] = output;\n"
+sail(): "{\n  let rs1_val = X(rs1);\n  let rs2_val = X(rs2);\n  result : xlenbits\
+  \ = zeros();\n  foreach (i from 0 to (xlen_val - 1))\n    if rs2_val[i] == bitone\
+  \ then result = result ^ (rs1_val << i);\n  X(rd) = result;\n  RETIRE_SUCCESS\n\
+  }\n"
+
+Warning: Could not find /home/harishankar/Downloads/Coding_challenge/data/B/OP.yaml, defaulting opcode to 0x33
+ C header file 'riscv_instruction.h' generated successfully!
