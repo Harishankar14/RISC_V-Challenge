@@ -7,7 +7,7 @@ This project demonstrates a complete round-trip pipeline between YAML instructio
 ### DIRECTORY STRUCTURE 
 
 ```
-project/
+RISC_V-Challenge/
 ├── data/
 │   └── B/                          # Contains multiple .yaml instruction files (e.g., andn.yaml)
 ├── src/                           # Source directory for Python and C implementations
