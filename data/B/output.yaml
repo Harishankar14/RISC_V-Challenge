@@ -1,0 +1,5 @@
+instructions:
+  - name: clmul
+    opcode: 0x33
+    funct3: 0x1
+    funct7: 0x05
